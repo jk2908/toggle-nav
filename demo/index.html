@@ -71,6 +71,10 @@
         border: 2px solid blue;
       }
 
+      #external-trigger {
+        margin-block-end: 10px;
+      }
+
       ul {
         display: flex;
         flex-direction: column;
@@ -89,6 +93,20 @@
 
       #focus {
         display: none;
+      }
+
+      #setup {
+        all: unset;
+        background-color: none;
+        border: 0;
+        cursor: pointer;
+        color: blue;
+        padding: 0;
+        text-decoration: underline;
+      }
+
+      #setup:active {
+        color: red;
       }
     </style>
   </head>
@@ -109,8 +127,8 @@
     </header>
 
     <main>
-      <button data-toggle-nav-open>External trigger</button>
-      <p>...will not work unless setup.</p>
+      <button id="external-trigger" data-toggle-nav-open>External trigger</button>
+      <p>...will not work unless <button id="setup" onclick="setup()">setup.</button></p>
 
       <h1>toggle-nav component</h1>
 
@@ -216,6 +234,19 @@
 
     <script type="module">
       import '../toggle-nav.js';
+    </script>
+
+    <script>
+      const setup = () => {
+        const openEl = document.querySelector('[data-toggle-nav-open]');
+        const setupEl = document.getElementById('setup');
+        const toggleNavEl = document.querySelector('toggle-nav');
+
+        toggleNavEl.setAttribute('external-trigger', '')
+        toggleNavEl.externalTrigger = true;
+        openEl.addEventListener('click', () => toggleNavEl._handleOpen());
+        setupEl.style.color = 'green';
+      }
     </script>
   </body>
 </html>
