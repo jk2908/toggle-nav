@@ -8,7 +8,7 @@ Drop in solution for handling show/hide navigation.
 ## Things
   - Styleable.
   - Traps focus by making the underlying page elements [inert](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert) when the element is active, though it does leak to the browser.
-  - When not expanded, the element is `inert` and `aria-hidden`.
+  - When not expanded, the element is `inert` and `hidden`.
   - Handles focus when opening and closing the nav, e.g. focus returns to open trigger on close.
   - Helps set the correct ARIA attributes.
   - Can be opened with default button within the component itself, or an 'external-trigger' attribute is    accepted, to allow the menu to be opened from a button elsewhere on the page.

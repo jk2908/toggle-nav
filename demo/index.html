@@ -113,7 +113,7 @@
 
   <body>
     <header>
-      <a href="/demo">Demo <span id="focus">- you can't focus me now</span></a>
+      <a href="/toggle-nav/demo">Demo <span id="focus">- you can't focus me now</span></a>
 
       <toggle-nav name="Site navigation">
         <h2 slot="header-content">Site navigation</h2>
@@ -146,7 +146,7 @@
             >
             when the element is active, though it does leak to the browser.
           </li>
-          <li>When not expanded, the element is <code>inert</code> and <code>aria-hidden</code>.</li>
+          <li>When not expanded, the element is <code>inert</code> and <code>hidden</code>.</li>
           <li>Handles focus when opening and closing the nav, e.g. focus returns to open trigger on close.</li>
           <li>Helps set the correct ARIA attributes.</li>
           <li>
