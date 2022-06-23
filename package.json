@@ -1,0 +1,16 @@
+{
+  "name": "toggle-nav",
+  "version": "0.0.1",
+  "description": "Drop in solution for handling show/hide navigation",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "dev": "wds --node-resolve --watch --open"
+  },
+  "keywords": [],
+  "author": "Jerome Kenway",
+  "license": "MIT",
+  "devDependencies": {
+    "@web/dev-server": "^0.1.32"
+  }
+}

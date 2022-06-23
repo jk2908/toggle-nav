@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>toggle-nav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="toggle-nav Component Demo" />
+    <style>
+      :root {
+        --padding: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: system-ui;
+        line-height: 1.5;
+      }
+
+      h1 {
+        margin-block: 20px;
+      }
+
+      h2, h3 {
+        margin-block-end: 15px;
+      }
+
+      header {
+        align-items: center;
+        display: flex;
+        padding: var(--padding);
+      }
+
+      main {
+        margin-inline: auto;
+        max-inline-size: 65ch;
+        padding: var(--padding) var(--padding) 20px var(--padding);
+      }
+
+      main > article > ol {
+        list-style-position: inside;
+      }
+
+      ol > li:not(:last-child) {
+        margin-block-end: 10px;
+      }
+
+      article + article {
+        margin-block-start: 20px;
+      }
+
+      article > * + * {
+        margin-block-start: 10px;
+      }
+
+      toggle-nav {
+        margin-inline-start: auto;
+      }
+
+      button {
+        appearance: none;
+        cursor: pointer;
+        font: inherit;
+        padding: var(--padding);
+      }
+
+      button:focus {
+        border: 2px solid blue;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      pre {
+        padding-inline-start: var(--padding);
+      }
+
+      pre > code {
+        white-space: pre-line;
+      }
+
+      #focus {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="/demo">Demo <span id="focus">- you can't focus me now</span></a>
+
+      <toggle-nav name="Site navigation">
+        <h2 slot="header-content">Site navigation</h2>
+        <ul slot="main-content">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <p slot="footer-content">More content or <a href="#">another link</a></p>
+      </toggle-nav>
+    </header>
+
+    <main>
+      <button data-toggle-nav-open>External trigger</button>
+      <p>...will not work unless setup.</p>
+
+      <h1>toggle-nav component</h1>
+
+      <article>
+        <h2>Things</h2>
+        <ol>
+          <li>Styleable.</li>
+          <li>
+            Traps focus by making the underlying page elements
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert"
+              target="_blank"
+              rel="noopener norefferer">
+              inert</a
+            >
+            when the element is active, though it does leak to the browser.
+          </li>
+          <li>When not expanded, the element is <code>inert</code> and <code>aria-hidden</code>.</li>
+          <li>Handles focus when opening and closing the nav, e.g. focus returns to open trigger on close.</li>
+          <li>Helps set the correct ARIA attributes.</li>
+          <li>
+            Can be opened with default button within the component itself, or an <code>external-trigger</code> attribute is accepted,
+            to allow the menu to be opened from a button elsewhere on the page.
+          </li>
+          <li>Closes on ESC, or by clicking outside of the element.</li>
+          <li>Slots for ordering content.</li>
+        </ol>
+      </article>
+
+      <article>
+        <h2>Styling</h2>
+        <p>Most of the styling can be done by overriding these custom properties (with defaults):</p>
+        <pre>
+          <code>
+            --toggle-nav-background: rgb(225 225 225);
+            --toggle-nav-border-radius: 0;
+            --toggle-nav-button-focus-outline: 2px solid blue;
+            --toggle-nav-button-padding: 10px;
+            --toggle-nav-close-button-margin-inline-start: auto;
+            --toggle-nav-inline-size: min(100vw, 32.5rem);
+            --toggle-nav-inset-block: 0;
+            --toggle-nav-inset-inline-start: calc(100% + var(--toggle-nav-inline-size));
+            --toggle-nav-expanded-inset-inline-start: calc(100% - var(--toggle-nav-inline-size));
+            --toggle-nav-list-gap: 10px;
+            --toggle-nav-overlay-background: rgb(0 0 0 / 0.25);
+            --toggle-nav-padding: 20px;
+            --toggle-nav-text-size: 1rem;
+            --toggle-nav-transition: inset 350ms ease-in-out;
+          </code>
+        </pre>
+
+        <p>
+          For example, you could do something like:
+        </p>
+
+        <pre>
+          <code>
+            toggle-nav {
+              --toggle-nav-inset-inline-start: calc(0px - var(--toggle-nav-inline-size));
+              --toggle-nav-expanded-inset-inline-start: 0;
+            }
+          </code>
+        </pre>
+
+        <p>... in your stylesheet, to make the element appear from the left of your screen.</p>
+
+        <p>Some sections of the element can also be styled using the ::part pseudo-element...</p>
+
+        <pre>
+          <code>
+            toggle-nav::part(header) {
+              &nbsp;&nbsp;background-color: green;
+            }
+          </code>
+        </pre>
+
+        <p>
+          Available ::part(s) to style are (header), (main), (footer). 
+          More styling can be achieved by directly editing the component source.
+        </p>
+      </article>
+
+      <article>
+        <h2>Optional attributes</h2>
+
+        <ol>
+          <li>
+            externalTrigger (external-trigger), Boolean: Add this to the toggle-nav element to use 
+            another element within your page as the trigger to open the navigation. 
+            Also add <code>[data-toggle-nav-open]</code> to the element that 
+            you want to use. <code><toggle-nav external-trigger></toggle-nav></code> and 
+            elsewhere <code>&lt;button id="my-button" [data-toggle-nav-open]&gt;My button&lt;/button&gt;</code>. 
+            <code>aria-expanded</code> will be set on the external button too, as 
+            will <code>aria-labelledby</code>, if using the optional name attribute below.
+          </li>
+          <li>
+            name (name), String: Can be added to provide an <code>aria-label</code> to 
+            the <code>nav</code> element within the component.
+          </li>
+        </ol>
+      </article>
+    </main>
+
+    <script type="module">
+      import '../toggle-nav.js';
+    </script>
+  </body>
+</html>
