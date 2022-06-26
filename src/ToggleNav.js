@@ -180,6 +180,7 @@ export class ToggleNav extends HTMLElement {
     this.container.removeAttribute('hidden');
     this.closeEl.focus();
     this.focus();
+    document.body.style.overflow = 'hidden';
 
     this.closeEl.addEventListener('click', this.close);
     this.overlay.addEventListener('click', this.close);
@@ -193,6 +194,7 @@ export class ToggleNav extends HTMLElement {
     this.container.setAttribute('hidden', '');
     this.focus();
     this.previouslyFocused.focus();
+    document.body.style.overflow = 'auto';
 
     this.closeEl.removeEventListener('click', this.close);
     this.overlay.removeEventListener('click', this.close);
