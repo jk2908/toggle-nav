@@ -236,7 +236,7 @@ export class ToggleNav extends HTMLElement {
   }
 }
 
-export function externalTrigger() {
+export const externalTrigger = () => {
   const openEl = document.querySelector('[data-toggle-nav-open]');
   const toggleNavEl = document.querySelector('toggle-nav');
 
