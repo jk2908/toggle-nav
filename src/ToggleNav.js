@@ -2,15 +2,15 @@ export class ToggleNav extends HTMLElement {
   constructor() {
     super();
 
-    this.isExpanded = false;
-    this.externalTrigger = false;
-    this.name = this.name;
+    this._isExpanded = false;
+    this._externalTrigger = false;
+    this._name = '';
     this.shadow = this.attachShadow({ mode: 'open' });
 
-    this.open = () => this._handleOpen();
-    this.close = () => this._handleClose();
-    this.keys = e => this._handleKeys(e);
-    this.focus = () => this._handleFocus();
+    this.open = () => this.handleOpen();
+    this.close = () => this.handleClose();
+    this.keys = e => this.handleKeys(e);
+    this.focus = () => this.handleFocus();
   }
 
   static get observedAttributes() {
@@ -22,15 +22,15 @@ export class ToggleNav extends HTMLElement {
     this[property] = newValue;
 
     if (property === 'is-expanded') {
-      this.isExpanded = !this.isExpanded;
+      this._isExpanded = !this._isExpanded;
     }
 
     if (property === 'external-trigger') {
-      this.externalTrigger = true;
+      this._externalTrigger = true;
     }
 
     if (property === 'name') {
-      this.name = newValue;
+      this._name = newValue;
     }
   }
 
@@ -163,16 +163,16 @@ export class ToggleNav extends HTMLElement {
     this.container.setAttribute('inert', '');
     this.container.setAttribute('hidden', '');
 
-    if (this.externalTrigger === false) {
-      this.openEl.addEventListener('click', () => (this.isExpanded === false ? this.open() : ''));
+    if (this._externalTrigger === false) {
+      this.openEl.addEventListener('click', () => (this._isExpanded === false ? this.open() : ''));
     }
 
-    if (this.name) {
-      this.nav.setAttribute('aria-label', this.name);
+    if (this._name) {
+      this.nav.setAttribute('aria-label', this._name);
     }
   }
 
-  _handleOpen() {
+  handleOpen() {
     this.setAttribute('is-expanded', '');
     this.previouslyFocused = this.shadow.activeElement ?? document.activeElement;
     this.previouslyFocused.setAttribute('aria-expanded', '');
@@ -187,7 +187,7 @@ export class ToggleNav extends HTMLElement {
     this.shadow.addEventListener('keydown', this.keys);
   }
 
-  _handleClose() {
+  handleClose() {
     this.removeAttribute('is-expanded');
     this.previouslyFocused.removeAttribute('aria-expanded');
     this.container.setAttribute('inert', '');
@@ -201,11 +201,11 @@ export class ToggleNav extends HTMLElement {
     this.shadow.removeEventListener('keydown', this.keys);
   }
 
-  _handleKeys(e) {
+  handleKeys(e) {
     if (e.code === 'Escape') this.close();
   }
 
-  _handleFocus() {
+  handleFocus() {
     // focusable-selectors - https://github.com/KittyGiraudel/focusable-selectors
     const selectors = [
       'a[href]:not([tabindex^="-"])',
@@ -226,12 +226,12 @@ export class ToggleNav extends HTMLElement {
     const [...slotted] = this.querySelectorAll(selectors);
     const inert = all.filter(el => !slotted.includes(el));
 
-    if (this.isExpanded === true) {
+    if (this._isExpanded === true) {
       this.openEl.setAttribute('inert', '');
       inert.forEach(el => el.setAttribute('inert', ''));
     }
 
-    if (this.isExpanded === false) {
+    if (this._isExpanded === false) {
       this.openEl.removeAttribute('inert');
       inert.forEach(el => el.removeAttribute('inert'));
     }
@@ -242,6 +242,6 @@ export const externalTrigger = () => {
   const openEl = document.querySelector('[data-toggle-nav-open]');
   const toggleNavEl = document.querySelector('toggle-nav');
 
-  toggleNavEl.externalTrigger = true;
-  openEl.addEventListener('click', () => toggleNavEl._handleOpen());
+  toggleNavEl._externalTrigger = true;
+  openEl.addEventListener('click', () => toggleNavEl.handleOpen());
 }

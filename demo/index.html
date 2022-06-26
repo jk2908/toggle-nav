@@ -242,8 +242,8 @@
         const toggleNavEl = document.querySelector('toggle-nav');
 
         toggleNavEl.setAttribute('external-trigger', '')
-        toggleNavEl.externalTrigger = true;
-        openEl.addEventListener('click', () => toggleNavEl._handleOpen());
+        toggleNavEl._externalTrigger = true;
+        openEl.addEventListener('click', () => toggleNavEl.handleOpen());
         setupEl.style.color = '#0f0';
       }
     </script>
