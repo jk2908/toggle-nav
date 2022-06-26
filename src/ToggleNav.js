@@ -10,7 +10,7 @@ export class ToggleNav extends HTMLElement {
     this.open = () => this.handleOpen();
     this.close = () => this.handleClose();
     this.keys = e => this.handleKeys(e);
-    this.focus = () => this.handleFocus();
+    this.trap = () => this.handleFocusTrap();
   }
 
   static get observedAttributes() {
@@ -179,7 +179,7 @@ export class ToggleNav extends HTMLElement {
     this.container.removeAttribute('inert');
     this.container.removeAttribute('hidden');
     this.closeEl.focus();
-    this.focus();
+    this.trap();
     document.body.style.overflow = 'hidden';
 
     this.closeEl.addEventListener('click', this.close);
@@ -192,7 +192,7 @@ export class ToggleNav extends HTMLElement {
     this.previouslyFocused.removeAttribute('aria-expanded');
     this.container.setAttribute('inert', '');
     this.container.setAttribute('hidden', '');
-    this.focus();
+    this.trap();
     this.previouslyFocused.focus();
     document.body.style.overflow = 'auto';
 
@@ -205,7 +205,7 @@ export class ToggleNav extends HTMLElement {
     if (e.code === 'Escape') this.close();
   }
 
-  handleFocus() {
+  handleFocusTrap() {
     // focusable-selectors - https://github.com/KittyGiraudel/focusable-selectors
     const selectors = [
       'a[href]:not([tabindex^="-"])',
