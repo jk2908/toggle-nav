@@ -53,6 +53,8 @@ toggle-nav::part(header) {
 Available ::part(s) to style are (header), (main), (footer). More styling can be achieved by editing toggle-nav.js directly.
 
 ### Slots
+  - `open-button` and `close-button` slots mean that you can replace the default text content, or drop 
+  an SVG icon in there.
   - Content can be placed in the `header-content`, `main-content` and `footer-content` slots. They place the content where you'd expect, however you could do...
 
 ```
