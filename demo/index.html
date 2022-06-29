@@ -211,13 +211,37 @@
       </article>
 
       <article>
+        <h2>Slots</h2>
+
+        <ol>
+          <li>
+            Content can be placed in the <code>header-content</code>, <code>main-content</code>
+            and <code>footer-content</code> slots. They place the content where you'd expect, 
+            however you could do...
+          </li>
+        </ol>
+
+        <pre>
+          <code>
+            <svg slot="header-content">Could stick a logo here if you want</svg>
+
+            <ul slot="main-content">
+              <li><a href="/home">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </code>
+        </pre>
+      </article>
+
+      <article>
         <h2>Optional attributes</h2>
 
         <ol>
           <li>
             externalTrigger (external-trigger), Boolean: Add this to the toggle-nav element to use 
             another element within your page as the trigger to open the navigation. 
-            Also add <code>data-toggle-nav-open</code> to the element that 
+            Also add <code>Edata-toggle-nav-open</code> to the element that 
             you want to use. <code><toggle-nav external-trigger></toggle-nav></code> and 
             elsewhere <code>&lt;button id="my-button" data-toggle-nav-open&gt;My button&lt;/button&gt;</code>. 
             <code>aria-expanded</code> will be set on the external button too, as 
