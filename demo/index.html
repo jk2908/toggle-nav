@@ -216,7 +216,8 @@
         <ol>
           <li>
             <code>open-button</code> and <code>close-button</code> slots mean that you can replace 
-            the default text content, or drop an SVG icon in there.
+            the default text content, or drop an SVG icon in there. Like 
+            <code>&lt;svg slot="open-button"&gt;&lt;/svg&gt;</code>
           </li>
           <li>
             Content can be placed in the <code>header-content</code>, <code>main-content</code>
@@ -224,18 +225,6 @@
             however you could do...
           </li>
         </ol>
-
-        <pre>
-          <code>
-            <svg slot="header-content">Could stick a logo here if you want</svg>
-
-            <ul slot="main-content">
-              <li><a href="/home">Home</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
-            </ul>
-          </code>
-        </pre>
       </article>
 
       <article>
