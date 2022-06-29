@@ -55,17 +55,7 @@ Available ::part(s) to style are (header), (main), (footer). More styling can be
 ### Slots
   - `open-button` and `close-button` slots mean that you can replace the default text content, or drop 
   an SVG icon in there. Like `&lt;svg slot="open-button"&gt;&lt;/svg&gt;`
-  - Content can be placed in the `header-content`, `main-content` and `footer-content` slots. They place the content where you'd expect, however you could do...
-
-```
-  <svg slot="header-content">Could stick a logo here if you want</svg>
-
-  <ul slot="main-content">
-    <li><a href="/home">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-```
+  - Content can be placed in the `header-content`, `main-content` and `footer-content` slots. They place the content where you'd expect.
 
 ### Optional attributes
   - externalTrigger (external-trigger), Boolean: Add this to the toggle-nav element to use another element within your page as the trigger to open the navigation. Also add `data-toggle-nav-open` to the element that you want to use. `<toggle-nav external-trigger></toggle-nav>` and elsewhere `<button id="my-button" data-toggle-nav-open>My button</button>`. `aria-expanded` will be set on the external button too.
