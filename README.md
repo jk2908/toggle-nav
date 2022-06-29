@@ -54,7 +54,7 @@ Available ::part(s) to style are (header), (main), (footer). More styling can be
 
 ### Slots
   - `open-button` and `close-button` slots mean that you can replace the default text content, or drop 
-  an SVG icon in there. Like `&lt;svg slot="open-button"&gt;&lt;/svg&gt;`
+  an SVG icon in there. Like `<svg slot="open-button"></svg>`
   - Content can be placed in the `header-content`, `main-content` and `footer-content` slots. They place the content where you'd expect.
 
 ### Optional attributes
