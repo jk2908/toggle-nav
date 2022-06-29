@@ -53,7 +53,7 @@ toggle-nav::part(header) {
 Available ::part(s) to style are (header), (main), (footer). More styling can be achieved by editing toggle-nav.js directly.
 
 ### Optional attributes
-- externalTrigger (external-trigger), Boolean: Add this to the toggle-nav element to use another element within your page as the trigger to open the navigation. Also add `[data-toggle-nav-open]` to the element that you want to use. `<toggle-nav external-trigger></toggle-nav>` and elsewhere `<button id="my-button" [data-toggle-nav-open]>My button</button>`. `aria-expanded` will be set on the external button too.
+- externalTrigger (external-trigger), Boolean: Add this to the toggle-nav element to use another element within your page as the trigger to open the navigation. Also add `data-toggle-nav-open` to the element that you want to use. `<toggle-nav external-trigger></toggle-nav>` and elsewhere `<button id="my-button" data-toggle-nav-open>My button</button>`. `aria-expanded` will be set on the external button too.
 - name (name), String: Can be added to provide an `aria-label` to the `nav` element within the component.
 
 
