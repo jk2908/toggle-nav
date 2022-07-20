@@ -202,7 +202,7 @@ export class ToggleNav extends HTMLElement {
   }
 
   handleKeys(e) {
-    if (e.code === 'Escape') this.close();
+    if (e.key === 'Escape') this.close();
   }
 
   handleFocusTrap() {
