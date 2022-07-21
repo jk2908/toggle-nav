@@ -12,7 +12,7 @@ Drop in solution for handling show/hide navigation.
   - Handles focus when opening and closing the nav, e.g. focus returns to open trigger on close.
   - Helps set the correct ARIA attributes.
   - Can be opened with default button within the component itself, or an 'external-trigger' attribute is    accepted, to allow the menu to be opened from a button elsewhere on the page.
-  - Closes on ESC, or by clicking outside of the element.
+  - Closes on Escape, or by clicking outside of the element.
   - Slots for ordering content.
 
 ### Styling
@@ -50,7 +50,7 @@ toggle-nav::part(header) {
   background-color: green;
 }
 ```
-Available ::part(s) to style are (header), (main), (footer). More styling can be achieved by editing toggle-nav.js directly.
+Available ::part(s) to style are (header), (main), (footer). More styling can be achieved by editing ToggleNav.js directly.
 
 ### Slots
   - `open-button` and `close-button` slots mean that you can replace the default text content, or drop 
